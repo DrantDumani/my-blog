@@ -4,7 +4,7 @@ import { SignUp } from "./pages/SignUp/SignUp";
 import { Login } from "./pages/Login/Login";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { PostWrapper } from "./pages/PostWrapper/PostWrapper";
-import { signUp } from "./utils/actions";
+import { login, signUp } from "./utils/actions";
 import { NoAuth } from "./components/NoAuth/NoAuth";
 import { useAuthContext } from "./context/AuthContext";
 
@@ -21,6 +21,7 @@ function App() {
             {
               path: "/login",
               element: <Login />,
+              action: login(authContext),
             },
             {
               path: "/signup",
