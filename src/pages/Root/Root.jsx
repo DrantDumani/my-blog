@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
+import { Navbar } from "../../components/Navbar/Navbar";
+import { Footer } from "../../components/Footer/Footer";
 
 export function Root() {
   return (
     <>
-      <h1>This is the root page</h1>
+      <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 }

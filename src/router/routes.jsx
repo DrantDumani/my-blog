@@ -26,7 +26,11 @@ const routes = [
         element: <Dashboard />,
       },
       {
-        path: "post/postId",
+        path: "posts",
+        element: <Dashboard />,
+      },
+      {
+        path: "posts/:postId",
         element: <PostWrapper />,
       },
     ],
