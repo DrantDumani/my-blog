@@ -2,13 +2,17 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { PostCard } from "../../components/PostCard/PostCard";
 import { useLoaderData, Link } from "react-router-dom";
 
-export function PostWrapper() {
+export function Home() {
   const postList = useLoaderData();
+
   return (
     <div>
       <SearchBar />
 
-      <h1>All Posts</h1>
+      <div>
+        <h1>Welcome to Almagorge</h1>
+        <h2>Recent Posts</h2>
+      </div>
 
       {postList.length ? (
         <div>

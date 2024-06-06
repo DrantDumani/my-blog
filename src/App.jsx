@@ -2,9 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./pages/Root/Root";
 import { SignUp } from "./pages/SignUp/SignUp";
 import { Login } from "./pages/Login/Login";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { Home } from "./pages/Home/Home";
+import { Search } from "./pages/Search/Search";
 import { PostWrapper } from "./pages/PostWrapper/PostWrapper";
 import { login, signUp } from "./utils/actions";
+import { getPosts } from "./utils/loaders";
 import { NoAuth } from "./components/NoAuth/NoAuth";
 import { useAuthContext } from "./context/AuthContext";
 
@@ -33,15 +35,18 @@ function App() {
 
         {
           path: "/",
-          element: <Dashboard />,
+          element: <Home />,
+          loader: getPosts,
         },
         {
           path: "search",
-          element: <Dashboard />,
+          element: <Search />,
+          loader: getPosts,
         },
         {
           path: "posts",
-          element: <Dashboard />,
+          element: <PostWrapper />,
+          loader: getPosts,
         },
         {
           path: "posts/:postId",

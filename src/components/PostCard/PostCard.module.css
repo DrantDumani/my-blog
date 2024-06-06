@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border: 1.5px solid #000;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.dateText {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #565656;
+}
+
+.pub,
+.notPub {
+  font-size: 0.8125rem;
+}
+
+.pub {
+  color: #087200;
+}
+
+.notPub {
+  color: #8a0b0b;
+}
