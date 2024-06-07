@@ -56,7 +56,9 @@ export function Post() {
         <p>{humanReadable(post.timestamp)}</p>
         {post.edited_at && <p>Edited: {humanReadable(post.edited_at)}</p>}
         <p>{post.content}</p>
-        <LikeButton likes={post.likes} likes_count={post.likes_count} />
+        {token && (
+          <LikeButton likes={post.likes} likes_count={post.likes_count} />
+        )}
         <ul>
           {post.tags.map((tag, i) => (
             <li key={i}>

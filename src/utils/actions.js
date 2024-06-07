@@ -11,7 +11,7 @@ export const signUp =
     const data = await resp.json();
 
     if (resp.ok) {
-      const exp = window.atob(data.token.split(".")[1]).exp * 1000;
+      const exp = window.atob(data.token.split(".")[1]).exp;
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
@@ -40,7 +40,9 @@ export const login =
     const data = await resp.json();
 
     if (resp.ok) {
-      const exp = window.atob(data.token.split(".")[1]).exp * 1000;
+      const tokenObj = window.atob(data.token.split(".")[1]);
+      const { exp } = JSON.parse(tokenObj);
+      console.log(exp);
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);

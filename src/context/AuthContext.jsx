@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const getUserInfo = () => {
   const info = {
@@ -28,6 +28,20 @@ export function AuthContextProvider({ children }) {
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("exp");
   };
+
+  useEffect(() => {
+    const exp = user.exp * 1000;
+    if (!exp) return;
+    else {
+      const delay = exp - Date.now() > 0 ? exp - Date.now() : 0;
+
+      const id = setTimeout(() => {
+        if (Date.now() > exp) logout();
+      }, delay);
+
+      return () => clearTimeout(id);
+    }
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout, setUser }}>
