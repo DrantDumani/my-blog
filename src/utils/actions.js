@@ -11,13 +11,18 @@ export const signUp =
     const data = await resp.json();
 
     if (resp.ok) {
+      const exp = window.atob(data.token.split(".")[1]).exp * 1000;
       localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("id", data.id);
+      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
         username: data.username,
         userId: data.id,
         isAdmin: data.isAdmin,
-        exp: data.exp,
+        exp: exp,
       });
       return redirect("/");
     } else if (resp.status === 403) {
@@ -35,16 +40,60 @@ export const login =
     const data = await resp.json();
 
     if (resp.ok) {
+      const exp = window.atob(data.token.split(".")[1]).exp * 1000;
       localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("id", data.id);
+      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
         username: data.username,
         userId: data.id,
         isAdmin: data.isAdmin,
-        exp: data.exp,
+        exp: exp,
       });
       return redirect("/");
     } else if (resp.status === 401) {
       return data.err;
     } else throw new Response("Error completing request");
   };
+
+export const postAction = async ({ request, params }) => {
+  const formData = await request.formData();
+  const intent = formData.get("intent");
+  const { postId } = params;
+
+  if (intent === "likePost") {
+    const resp = await handleData(`posts/${postId}/like`, {}, "PUT");
+
+    if (resp.ok) {
+      return true;
+    } else throw new Response("Error completing request");
+  } else if (intent === "newPost") {
+    const content = formData.get("content");
+    const resp = await handleData(`comments/${postId}`, { content }, "POST");
+    const data = await resp.json();
+
+    if (resp.ok) {
+      return data;
+    } else throw new Response("Error completing request");
+  } else if (intent === "editPost") {
+    const content = formData.get("content");
+    const commentId = formData.get("commentId");
+
+    const resp = await handleData(`comments/${commentId}`, { content }, "PUT");
+    const data = await resp.json();
+
+    if (resp.ok) {
+      return data;
+    } else throw new Response("Error completing request");
+  } else if (intent === "delCom") {
+    const commentId = formData.get("commentId");
+
+    const resp = await handleData(`comments/${commentId}`, {}, "DELETE");
+    if (resp.ok) {
+      return true;
+    } else throw new Response("Failed to delete comment.");
+  }
+};

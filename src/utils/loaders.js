@@ -12,3 +12,19 @@ export const getPosts = async ({ request }) => {
     return data.posts;
   } else throw new Response("Error retrieving posts");
 };
+
+export const getPostAndComments = async ({ params }) => {
+  const { postId } = params;
+  const [postResp, commentsResp] = await Promise.all([
+    handleData(`posts/${postId}`),
+    handleData(`comments/${postId}`),
+  ]);
+
+  if (postResp.ok && commentsResp.ok) {
+    const [post, comments] = await Promise.all([
+      postResp.json(),
+      commentsResp.json(),
+    ]);
+    return { post, comments };
+  } else throw new Response("Post not Found");
+};

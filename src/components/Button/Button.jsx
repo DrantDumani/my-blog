@@ -6,9 +6,10 @@ export function Button({
   name = "",
   value = "",
   children,
+  clickHandler = () => {},
 }) {
   return (
-    <button type={type} name={name} value={value}>
+    <button type={type} name={name} value={value} onClick={clickHandler}>
       {children}
     </button>
   );
@@ -20,4 +21,5 @@ Button.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   children: PropTypes.string,
+  clickHandler: PropTypes.func,
 };
