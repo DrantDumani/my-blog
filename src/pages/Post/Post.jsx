@@ -7,6 +7,9 @@ import { InputWrapper } from "../../components/InputWrapper/InputWrapper";
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 import { Button } from "../../components/Button/Button";
 import { useState, useEffect, useRef } from "react";
+import parse from "html-react-parser";
+import hljs from "highlight.js/lib/common";
+import "highlight.js/styles/github.css";
 
 export function Post() {
   const [editId, setEditId] = useState("");
@@ -48,6 +51,10 @@ export function Post() {
     }
   }, [deleteSubmit]);
 
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
   return (
     <div>
       <div>
@@ -55,7 +62,7 @@ export function Post() {
         {post.subTitle && <h2>{post.subTitle}</h2>}
         <p>{humanReadable(post.timestamp)}</p>
         {post.edited_at && <p>Edited: {humanReadable(post.edited_at)}</p>}
-        <p>{post.content}</p>
+        <div>{parse(post.content)}</div>
         {token && (
           <LikeButton likes={post.likes} likes_count={post.likes_count} />
         )}
