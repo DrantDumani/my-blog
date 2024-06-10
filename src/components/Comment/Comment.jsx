@@ -1,6 +1,7 @@
 import { useAuthContext } from "../../context/AuthContext";
 import { Button } from "../Button/Button";
 import { xTimeAgo } from "../../utils/humanDate";
+import PropTypes from "prop-types";
 
 export function Comment({ comment, handleEdit, showDelete }) {
   const { userId, isAdmin } = useAuthContext().user;
@@ -27,3 +28,9 @@ export function Comment({ comment, handleEdit, showDelete }) {
     </div>
   );
 }
+
+Comment.propTypes = {
+  comment: PropTypes.object,
+  handleEdit: PropTypes.func,
+  showDelete: PropTypes.func,
+};
