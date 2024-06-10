@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import { handleData } from "./handleData.js";
 
 export const signUp =
@@ -24,7 +23,7 @@ export const signUp =
         isAdmin: data.isAdmin,
         exp: exp,
       });
-      return redirect("/");
+      return true;
     } else if (resp.status === 403) {
       return data.errs;
     } else throw new Response("Error completing request");

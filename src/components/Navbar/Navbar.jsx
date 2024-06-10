@@ -20,7 +20,9 @@ export function Navbar() {
           <Link to="login" state={location.pathname}>
             Login
           </Link>
-          <Link to="signup">Sign Up</Link>
+          <Link to="signup" state={location.pathname}>
+            Sign Up
+          </Link>
         </>
       )}
     </nav>
