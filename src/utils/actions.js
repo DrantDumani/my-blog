@@ -42,7 +42,6 @@ export const login =
     if (resp.ok) {
       const tokenObj = window.atob(data.token.split(".")[1]);
       const { exp } = JSON.parse(tokenObj);
-      console.log(exp);
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
@@ -55,7 +54,7 @@ export const login =
         isAdmin: data.isAdmin,
         exp: exp,
       });
-      return redirect("/");
+      return true;
     } else if (resp.status === 401) {
       return data.err;
     } else throw new Response("Error completing request");

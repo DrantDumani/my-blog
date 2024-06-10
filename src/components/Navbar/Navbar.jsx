@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useAuthContext, AuthContext } from "../../context/AuthContext";
-import { useContext } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 export function Navbar() {
+  const location = useLocation();
+
   const { user, logout } = useAuthContext();
   return (
     <nav>
@@ -16,7 +17,9 @@ export function Navbar() {
         </>
       ) : (
         <>
-          <Link to="login">Login</Link>
+          <Link to="login" state={location.pathname}>
+            Login
+          </Link>
           <Link to="signup">Sign Up</Link>
         </>
       )}

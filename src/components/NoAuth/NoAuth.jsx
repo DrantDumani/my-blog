@@ -1,7 +1,9 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 
 export function NoAuth() {
   const { user } = useAuthContext();
-  return !user.token ? <Outlet /> : <Navigate to="/" />;
+  const { state } = useLocation();
+  const navTo = state ? state : "/";
+  return !user.token ? <Outlet /> : <Navigate to={navTo} replace={true} />;
 }
