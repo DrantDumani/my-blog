@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function DeleteModal({ children, closeModal }) {
   return (
     <div>
@@ -9,3 +11,8 @@ export function DeleteModal({ children, closeModal }) {
     </div>
   );
 }
+
+DeleteModal.propTypes = {
+  children: PropTypes.string,
+  closeModal: PropTypes.func,
+};
