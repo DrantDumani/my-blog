@@ -1,0 +1,23 @@
+.btn {
+  padding: 6px;
+  border: 1.5px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  max-width: 16rem;
+}
+
+.btnDefault {
+  background-color: #54eb8d;
+}
+
+.btnDefault:hover {
+  background-color: #95fbbc;
+}
+
+.btnRed {
+  background-color: #ff5151;
+}
+
+.btnRed:hover {
+  background-color: #ffa6a6;
+}

@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.label {
+  composes: label from "../../styles/compose.module.css";
+}
+
+.input {
+  composes: input from "../../styles/compose.module.css";
+}

@@ -1,8 +1,12 @@
-# React + Vite
+# Almagorge blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A blog that I made from scratch. This is the repo for the front end. Click here for the [backend repo](https://github.com/DrantDumani/blogApi).
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Express JS
+- Node JS
+- Mongo DB
+- React
+- React Router
+- CSS Modules
