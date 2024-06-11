@@ -1,4 +1,4 @@
-.mainWrapper {
+.gridWrapper {
   max-width: 68.75rem;
   margin: 0 auto;
   width: 100%;
@@ -8,8 +8,8 @@
   composes: title from "../../styles/compose.module.css";
 }
 
-.postContainer {
-  composes: postList from "../../styles/compose.module.css";
+.postGrid {
+  composes: postGrid from "../../styles/compose.module.css";
 }
 
 .postLink {

@@ -1,0 +1,17 @@
+.searchWrapper {
+  max-width: 68.75rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.title {
+  composes: title from "../../styles/compose.module.css";
+}
+
+.searchGrid {
+  composes: postGrid from "../../styles/compose.module.css";
+}
+
+.postLink {
+  composes: postLink from "../../styles/compose.module.css";
+}

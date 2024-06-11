@@ -36,8 +36,10 @@ export function InputWrapper({
     );
 
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
+    <div className={styles.wrapper}>
+      <label className={styles.label} htmlFor={id}>
+        {label}
+      </label>
       {input}
     </div>
   );

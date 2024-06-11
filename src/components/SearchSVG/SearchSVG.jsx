@@ -1,3 +1,5 @@
+// Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools
+
 function SearchSVG() {
   return (
     <svg

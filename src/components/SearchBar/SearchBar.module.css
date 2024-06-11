@@ -1,0 +1,23 @@
+.searchForm {
+  padding: 1rem 0;
+  display: flex;
+  gap: 0.3rem;
+  align-items: end;
+  justify-content: center;
+}
+
+.label {
+  composes: label from "../../styles/compose.module.css";
+}
+
+.input {
+  composes: input from "../../styles/compose.module.css";
+}
+
+.srOnly {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  left: -10000px;
+}

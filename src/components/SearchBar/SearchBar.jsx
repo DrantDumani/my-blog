@@ -1,6 +1,7 @@
 import { Form, useSearchParams } from "react-router-dom";
 import SearchSVG from "../SearchSVG/SearchSVG";
 import { useId, useState } from "react";
+import styles from "./SearchBar.module.css";
 
 export function SearchBar() {
   const [searchParams] = useSearchParams();
@@ -13,14 +14,16 @@ export function SearchBar() {
 
   return (
     <Form
+      className={styles.searchForm}
       role="search"
       method="GET"
       action={`/search/?${searchTag.replace(/\s+/g, "+")}`}
     >
-      <label htmlFor={id}>
+      <label className={styles.label} htmlFor={id}>
         <SearchSVG />
       </label>
       <input
+        className={styles.input}
         id={id}
         type="search"
         name="tag"
@@ -28,7 +31,7 @@ export function SearchBar() {
         onInput={editSearch}
         placeholder="Search by tag"
       />
-      <button>Search</button>
+      <button className={styles.srOnly}>Search</button>
     </Form>
   );
 }

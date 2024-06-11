@@ -1,0 +1,11 @@
+.title {
+  composes: title from "../../styles/compose.module.css";
+}
+
+.form {
+  composes: centerForm from "../../styles/compose.module.css";
+}
+
+.err {
+  composes: err from "../../styles/compose.module.css";
+}

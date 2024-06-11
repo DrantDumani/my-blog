@@ -1,9 +1,13 @@
-import { useFetcher } from "react-router-dom";
+import { Form } from "react-router-dom";
 import PropTypes from "prop-types";
+import styles from "./RouterForm.module.css";
 
-export function RouterForm({ method = "GET", children }) {
-  const fetcher = useFetcher();
-  return <fetcher.Form method={method}>{children}</fetcher.Form>;
+export function RouterForm({ method = "GET", action = "", children }) {
+  return (
+    <Form className={styles.form} method={method} action={action}>
+      {children}
+    </Form>
+  );
 }
 
 RouterForm.propTypes = {

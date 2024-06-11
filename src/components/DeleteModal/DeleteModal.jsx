@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
+import styles from "./DeleteModal.module.css";
 
 export function DeleteModal({ children, closeModal }) {
   return (
-    <div>
-      <div>
-        <button onClick={closeModal}>X</button>
+    <div className={styles.modalWrapper}>
+      <div className={styles.modal}>
+        <button className={styles.modalXBtn} onClick={closeModal}>
+          X
+        </button>
         <p>Are you sure you want to delete this content?</p>
         {children}
       </div>
@@ -13,6 +16,6 @@ export function DeleteModal({ children, closeModal }) {
 }
 
 DeleteModal.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.object,
   closeModal: PropTypes.func,
 };

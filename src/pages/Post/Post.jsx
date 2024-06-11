@@ -9,7 +9,8 @@ import { Button } from "../../components/Button/Button";
 import { useState, useEffect, useRef } from "react";
 import parse from "html-react-parser";
 import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/github.css";
+import "highlight.js/styles/github-dark.css";
+import styles from "./Post.module.css";
 
 export function Post() {
   const [editId, setEditId] = useState("");
@@ -56,77 +57,104 @@ export function Post() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.postWrapper}>
       <div>
-        <h1>{post.title}</h1>
-        {post.subTitle && <h2>{post.subTitle}</h2>}
-        <p>{humanReadable(post.timestamp)}</p>
-        {post.edited_at && <p>Edited: {humanReadable(post.edited_at)}</p>}
+        <h1 className={styles.title}>{post.title}</h1>
+        {post.subTitle && <h2 className={styles.subTitle}>{post.subTitle}</h2>}
+
+        <p className={styles.timestamp}>{humanReadable(post.timestamp)}</p>
+        {post.edited_at && (
+          <p className={styles.timestamp}>
+            Edited: {humanReadable(post.edited_at)}
+          </p>
+        )}
+
         <div>{parse(post.content)}</div>
         {token && (
           <LikeButton likes={post.likes} likes_count={post.likes_count} />
         )}
-        <ul>
+        <ul className={styles.tagList}>
           {post.tags.map((tag, i) => (
             <li key={i}>
-              <Link to={`/search?tag=${tag.replace(/\s+/g, "+")}`}>#{tag}</Link>
+              <Link
+                className={styles.tagLink}
+                to={`/search?tag=${tag.replace(/\s+/g, "+")}`}
+              >
+                #{tag}
+              </Link>
             </li>
           ))}
         </ul>
       </div>
 
       {token && (
-        <fetcherNew.Form ref={formRef} method="POST">
-          <InputWrapper label="New Message" type="textarea" name="content" />
-          <Button name="intent" value="newPost">
-            Post Message
-          </Button>
-        </fetcherNew.Form>
+        <div className={styles.formContainer}>
+          <fetcherNew.Form
+            className={styles.newComForm}
+            ref={formRef}
+            method="POST"
+          >
+            <InputWrapper label="New Message" type="textarea" name="content" />
+            <Button name="intent" value="newPost">
+              Post Message
+            </Button>
+          </fetcherNew.Form>
+        </div>
       )}
 
-      {comments.map((com) =>
-        editId === com._id ? (
-          <div key={com._id}>
-            <fetcherEdit.Form method="POST" action={location.pathname}>
-              <InputWrapper
-                label="Edit Message"
-                type="textarea"
-                name="content"
-                defaultValue={com.content}
-              />
-              <input type="hidden" name="commentId" defaultValue={com._id} />
+      {comments.length > 0 && (
+        <div className={styles.commentList}>
+          {comments.map((com) =>
+            editId === com._id ? (
+              <div key={com._id}>
+                <fetcherEdit.Form method="POST" action={location.pathname}>
+                  <InputWrapper
+                    label="Edit Message"
+                    type="textarea"
+                    name="content"
+                    defaultValue={com.content}
+                  />
+                  <input
+                    type="hidden"
+                    name="commentId"
+                    defaultValue={com._id}
+                  />
 
-              <div>
-                <Button name="intent" value="editPost">
-                  Save
-                </Button>
-                <Button clickHandler={closeEdit} type="button">
-                  Cancel
-                </Button>
+                  <div>
+                    <Button name="intent" value="editPost">
+                      Save
+                    </Button>
+                    <Button clickHandler={closeEdit} type="button">
+                      Cancel
+                    </Button>
+                  </div>
+                </fetcherEdit.Form>
               </div>
-            </fetcherEdit.Form>
-          </div>
-        ) : (
-          <Comment
-            key={com._id}
-            comment={com}
-            handleEdit={openEdit}
-            showDelete={() => {
-              openModal();
-              setCurrDelId(com._id);
-            }}
-          />
-        )
+            ) : (
+              <Comment
+                key={com._id}
+                comment={com}
+                handleEdit={openEdit}
+                showDelete={() => {
+                  openModal();
+                  setCurrDelId(com._id);
+                }}
+              />
+            )
+          )}
+        </div>
       )}
 
       {showModal && (
         <DeleteModal closeModal={closeModal}>
           <fetcherDelete.Form key={currDelId} method="DELETE">
             <input type="hidden" name="commentId" defaultValue={currDelId} />
-            <Button name="intent" value="delCom">
-              Yes
-            </Button>
-            <Button clickHandler={closeModal}>No</Button>
+            <div className={styles.btnContainer}>
+              <Button color="Red" name="intent" value="delCom">
+                Yes
+              </Button>
+              <Button clickHandler={closeModal}>No</Button>
+            </div>
           </fetcherDelete.Form>
         </DeleteModal>
       )}

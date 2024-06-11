@@ -1,12 +1,36 @@
 import { useFetcher } from "react-router-dom";
 import PropTypes from "prop-types";
+import HeartSVG from "../HeartSVG/HeartSVG";
+import { useAuthContext } from "../../context/AuthContext.jsx";
+import styles from "./LikeButton.module.css";
 
 export function LikeButton({ likes_count, likes }) {
   const fetcher = useFetcher();
+  const { userId } = useAuthContext().user;
+  const userLiked = likes.includes(userId);
+
+  // check fetcher state. If fetcher state is loading
+  // then use the state to determine the optimistic ui
+  //
 
   return (
     <fetcher.Form method="PUT">
-      <button value="likePost" name="intent">{`Likes: ${likes_count}`}</button>
+      <button
+        className={`${styles.likeBtn} ${
+          fetcher.state === "submitting" || fetcher.state === "loading"
+            ? !userLiked && styles.heartFilled
+            : userLiked && styles.heartFilled
+        }`}
+        value="likePost"
+        name="intent"
+      >
+        <HeartSVG isFilled={userLiked} />{" "}
+        {`  ${
+          fetcher.state === "submitting" || fetcher.state === "loading"
+            ? (!userLiked && likes_count + 1) || (userLiked && likes_count - 1)
+            : likes_count
+        }`}
+      </button>
     </fetcher.Form>
   );
 }

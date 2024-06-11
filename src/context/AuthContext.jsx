@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const getUserInfo = () => {
   const info = {
@@ -53,3 +54,7 @@ export function AuthContextProvider({ children }) {
 export function useAuthContext() {
   return useContext(AuthContext);
 }
+
+AuthContextProvider.propTypes = {
+  children: PropTypes.any,
+};

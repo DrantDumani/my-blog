@@ -1,0 +1,63 @@
+.title {
+  margin: 1rem 0;
+}
+
+.err {
+  color: #ff1111;
+  font-style: italic;
+  font-size: 0.8125rem;
+  margin-top: 0.4rem;
+}
+
+.centerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.input {
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid #000;
+  min-width: 15rem;
+  max-width: 37.5rem;
+  font-family: Roboto, "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+  resize: none;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.postGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.postLink {
+  border: 1.5px solid #000;
+  border-radius: 0.25rem;
+}
+
+.postLink:hover {
+  color: #808080;
+}
+
+.grayItalics {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #565656;
+}
