@@ -1,4 +1,4 @@
-const apiStr = "http://localhost:3000/";
+const apiStr = "https://almagorge-blog-api.adaptable.app/";
 
 export const handleData = async (
   endPoint,
