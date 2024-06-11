@@ -9,6 +9,7 @@ import { PostWrapper } from "./pages/PostWrapper/PostWrapper";
 import { login, postAction, signUp } from "./utils/actions";
 import { getPosts, getPostAndComments } from "./utils/loaders";
 import { NoAuth } from "./components/NoAuth/NoAuth";
+import { Error } from "./pages/Error/Error";
 import { useAuthContext } from "./context/AuthContext";
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
     {
       path: "/",
       element: <Root />,
+      errorElement: <Error />,
       children: [
         {
+          errorElement: <Error />,
           element: <NoAuth />,
           children: [
             {

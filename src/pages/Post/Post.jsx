@@ -94,7 +94,13 @@ export function Post() {
             ref={formRef}
             method="POST"
           >
-            <InputWrapper label="New Message" type="textarea" name="content" />
+            <InputWrapper
+              label="New Message"
+              type="textarea"
+              name="content"
+              minLength="3"
+              maxLength="400"
+            />
             <Button name="intent" value="newPost">
               Post Message
             </Button>

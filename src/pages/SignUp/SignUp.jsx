@@ -15,6 +15,8 @@ export function SignUp() {
             label="Username:"
             placeholder="Edgar Allen Poe"
             name="username"
+            minLength="3"
+            maxLength="20"
           />
           {errs && errs.username && (
             <p className={styles.err}>{errs.username.msg}</p>
@@ -37,6 +39,7 @@ export function SignUp() {
             type="password"
             placeholder="********"
             name="password"
+            minLength="8"
           />
           {errs && errs.password && (
             <p className={styles.err}>{errs.password.msg}</p>

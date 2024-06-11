@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 
 export function InputWrapper({
   label,
-  defaultValue = "",
+  defaultValue = null,
   type = "text",
   name,
   isRequired = true,
-  placeholder = "",
+  placeholder = null,
+  minLength = null,
+  maxLength = null,
 }) {
   const id = useId();
 
@@ -22,6 +24,8 @@ export function InputWrapper({
         defaultValue={defaultValue}
         required={isRequired}
         placeholder={placeholder}
+        minLength={minLength}
+        maxLength={maxLength}
       />
     ) : (
       <input
@@ -32,6 +36,8 @@ export function InputWrapper({
         type={type}
         required={isRequired}
         placeholder={placeholder}
+        minLength={minLength}
+        maxLength={maxLength}
       />
     );
 
@@ -52,4 +58,6 @@ InputWrapper.propTypes = {
   name: PropTypes.string.isRequired,
   isRequired: PropTypes.bool,
   placeholder: PropTypes.string,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
 };
