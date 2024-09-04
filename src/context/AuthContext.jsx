@@ -6,7 +6,7 @@ const getUserInfo = () => {
     token: localStorage.getItem("token"),
     username: localStorage.getItem("username"),
     userId: localStorage.getItem("id"),
-    isAdmin: localStorage.getItem("isAdmin"),
+    isAdmin: localStorage.getItem("role"),
     exp: localStorage.getItem("exp"),
   };
   return info;

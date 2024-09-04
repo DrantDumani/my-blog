@@ -62,6 +62,8 @@ export function Post() {
         <h1 className={styles.title}>{post.title}</h1>
         {post.subTitle && <h2 className={styles.subTitle}>{post.subTitle}</h2>}
 
+        <p className={styles.postAuthor}>Written By: {post.author.username}</p>
+
         <p className={styles.timestamp}>{humanReadable(post.timestamp)}</p>
         {post.edited_at && (
           <p className={styles.timestamp}>
@@ -112,7 +114,7 @@ export function Post() {
         <div className={styles.commentList}>
           {comments.map((com) =>
             editId === com.id ? (
-              <div key={com.id}>
+              <div className={styles.editComWrapper} key={com.id}>
                 <fetcherEdit.Form method="POST" action={location.pathname}>
                   <InputWrapper
                     label="Edit Message"
@@ -122,7 +124,7 @@ export function Post() {
                   />
                   <input type="hidden" name="commentId" defaultValue={com.id} />
 
-                  <div>
+                  <div className={styles.editBtnWrapper}>
                     <Button name="intent" value="editPost">
                       Save
                     </Button>

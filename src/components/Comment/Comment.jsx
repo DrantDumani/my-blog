@@ -7,6 +7,7 @@ import styles from "./Comment.module.css";
 export function Comment({ comment, handleEdit, showDelete }) {
   const { userId, isAdmin } = useAuthContext().user;
   const isUsersPost = Number(userId) === comment.authorId;
+  console.log(isUsersPost, isAdmin === "Super");
 
   return (
     <div className={styles.comment}>
@@ -18,12 +19,12 @@ export function Comment({ comment, handleEdit, showDelete }) {
       </div>
 
       <p>{comment.content}</p>
-      {(isUsersPost || isAdmin) && (
+      {(isUsersPost || isAdmin === "Super") && (
         <div className={styles.comBtnContainer}>
           {isUsersPost && (
             <Button clickHandler={() => handleEdit(comment.id)}>Edit</Button>
           )}
-          {(isUsersPost || isAdmin) && (
+          {(isUsersPost || isAdmin === "Super") && (
             <Button color="Red" clickHandler={showDelete}>
               Delete
             </Button>

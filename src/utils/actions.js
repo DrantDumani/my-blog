@@ -14,13 +14,13 @@ export const signUp =
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
-      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("isAdmin", data.role);
       localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
         username: data.username,
         userId: data.id,
-        isAdmin: data.isAdmin,
+        isAdmin: data.role,
         exp: exp,
       });
       return true;
@@ -44,7 +44,7 @@ export const login =
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
-      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("isAdmin", data.role);
       localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
