@@ -17,8 +17,8 @@ export function Search() {
           {postList.map((post) => (
             <Link
               className={styles.postLink}
-              key={post._id}
-              to={`/post/${post._id}`}
+              key={post.id}
+              to={`/post/${post.id}`}
             >
               <PostCard
                 title={post.title}

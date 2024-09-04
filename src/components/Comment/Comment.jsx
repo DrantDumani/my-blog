@@ -7,7 +7,6 @@ import styles from "./Comment.module.css";
 export function Comment({ comment, handleEdit, showDelete }) {
   const { userId, isAdmin } = useAuthContext().user;
   const isUsersPost = Number(userId) === comment.authorId;
-  console.log(isUsersPost, isAdmin === "Super");
 
   return (
     <div className={styles.comment}>

@@ -1,6 +1,3 @@
-// const apiStr = "https://almagorge-blog-api.adaptable.app/";
-// console.log(import.meta.env);
-
 const apiStr =
   import.meta.env.MODE === "development"
     ? "http://localhost:3000/"
