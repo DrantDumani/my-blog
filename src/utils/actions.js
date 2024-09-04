@@ -70,6 +70,12 @@ export const postAction = async ({ request, params }) => {
     if (resp.ok) {
       return true;
     } else throw new Response("Error posting comment");
+  } else if (intent === "unlikePost") {
+    const resp = await handleData(`posts/${postId}/unlike`, {}, "PUT");
+
+    if (resp.ok) {
+      return true;
+    } else throw new Response("Error posting comment");
   } else if (intent === "newPost") {
     const content = formData.get("content");
     const resp = await handleData(`comments/${postId}`, { content }, "POST");
