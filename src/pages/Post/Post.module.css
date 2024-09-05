@@ -12,6 +12,12 @@
   margin: 1rem 0;
 }
 
+.postAuthor {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding-bottom: 0.4rem;
+}
+
 .timestamp,
 .tagLink {
   composes: grayItalics from "../../styles/compose.module.css";
@@ -50,6 +56,17 @@
   flex-direction: column;
   gap: 1.2rem;
   align-items: center;
+}
+
+.editComWrapper {
+  max-width: 100%;
+  width: 37.5rem;
+}
+
+.editBtnWrapper {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .btnContainer {

@@ -1,4 +1,7 @@
-const apiStr = "https://almagorge-blog-api.adaptable.app/";
+const apiStr =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000/"
+    : "https://almagorge-blog-api.adaptable.app/";
 
 export const handleData = async (
   endPoint,

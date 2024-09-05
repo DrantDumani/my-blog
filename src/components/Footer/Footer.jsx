@@ -7,7 +7,7 @@ export function Footer() {
       <a className={styles.footerLink} href="https://github.com/DrantDumani">
         Github
       </a>
-      <p>Created with React Router, MongoDB, Node, and ExpressJS.</p>
+      <p>Created with React Router, Postgres, Node, and ExpressJS.</p>
       <p>
         All svgs used were downloaded from{" "}
         <a className={styles.footerLink} href="https://www.svgrepo.com/">

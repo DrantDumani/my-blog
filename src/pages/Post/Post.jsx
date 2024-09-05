@@ -62,6 +62,8 @@ export function Post() {
         <h1 className={styles.title}>{post.title}</h1>
         {post.subTitle && <h2 className={styles.subTitle}>{post.subTitle}</h2>}
 
+        <p className={styles.postAuthor}>Written By: {post.author.username}</p>
+
         <p className={styles.timestamp}>{humanReadable(post.timestamp)}</p>
         {post.edited_at && (
           <p className={styles.timestamp}>
@@ -71,16 +73,16 @@ export function Post() {
 
         <div>{parse(post.content)}</div>
         {token && (
-          <LikeButton likes={post.likes} likes_count={post.likes_count} />
+          <LikeButton likes={post.likes} likes_count={post._count.likes} />
         )}
         <ul className={styles.tagList}>
-          {post.tags.map((tag, i) => (
-            <li key={i}>
+          {post.tags.map((tag) => (
+            <li key={tag.id}>
               <Link
                 className={styles.tagLink}
-                to={`/search?tag=${tag.replace(/\s+/g, "+")}`}
+                to={`/search?tag=${tag.name.replace(/\s+/g, "+")}`}
               >
-                #{tag}
+                #{tag.name}
               </Link>
             </li>
           ))}
@@ -111,8 +113,8 @@ export function Post() {
       {comments.length > 0 && (
         <div className={styles.commentList}>
           {comments.map((com) =>
-            editId === com._id ? (
-              <div key={com._id}>
+            editId === com.id ? (
+              <div className={styles.editComWrapper} key={com.id}>
                 <fetcherEdit.Form method="POST" action={location.pathname}>
                   <InputWrapper
                     label="Edit Message"
@@ -120,13 +122,9 @@ export function Post() {
                     name="content"
                     defaultValue={com.content}
                   />
-                  <input
-                    type="hidden"
-                    name="commentId"
-                    defaultValue={com._id}
-                  />
+                  <input type="hidden" name="commentId" defaultValue={com.id} />
 
-                  <div>
+                  <div className={styles.editBtnWrapper}>
                     <Button name="intent" value="editPost">
                       Save
                     </Button>
@@ -138,12 +136,12 @@ export function Post() {
               </div>
             ) : (
               <Comment
-                key={com._id}
+                key={com.id}
                 comment={com}
                 handleEdit={openEdit}
                 showDelete={() => {
                   openModal();
-                  setCurrDelId(com._id);
+                  setCurrDelId(com.id);
                 }}
               />
             )

@@ -14,13 +14,13 @@ export const signUp =
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
-      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("isAdmin", data.role);
       localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
         username: data.username,
         userId: data.id,
-        isAdmin: data.isAdmin,
+        isAdmin: data.role,
         exp: exp,
       });
       return true;
@@ -44,7 +44,7 @@ export const login =
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("id", data.id);
-      localStorage.setItem("isAdmin", data.isAdmin);
+      localStorage.setItem("isAdmin", data.role);
       localStorage.setItem("exp", exp);
       setUser({
         token: data.token,
@@ -66,6 +66,12 @@ export const postAction = async ({ request, params }) => {
 
   if (intent === "likePost") {
     const resp = await handleData(`posts/${postId}/like`, {}, "PUT");
+
+    if (resp.ok) {
+      return true;
+    } else throw new Response("Error posting comment");
+  } else if (intent === "unlikePost") {
+    const resp = await handleData(`posts/${postId}/unlike`, {}, "PUT");
 
     if (resp.ok) {
       return true;
