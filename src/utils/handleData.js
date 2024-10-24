@@ -1,7 +1,7 @@
 const apiStr =
   import.meta.env.MODE === "development"
     ? "http://localhost:3000/"
-    : "https://almagorge-blog-api.adaptable.app/";
+    : "https://blogapi-4qmq.onrender.com/";
 
 export const handleData = async (
   endPoint,
